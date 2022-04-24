@@ -6,13 +6,44 @@
 #
 asgiref==3.5.0
     # via django
+astroid==2.11.3
+    # via pylint
 backports-zoneinfo==0.2.1
     # via django
+dill==0.3.4
+    # via pylint
 django==4.0.4
     # via djangorestframework
 djangorestframework==3.13.1
     # via -r requirements.in
+isort==5.10.1
+    # via pylint
+lazy-object-proxy==1.7.1
+    # via astroid
+mccabe==0.7.0
+    # via pylint
+platformdirs==2.5.2
+    # via pylint
+pylint==2.13.7
+    # via
+    #   pylint-django
+    #   pylint-plugin-utils
+pylint-django==2.5.3
+    # via -r requirements.in
+pylint-plugin-utils==0.7
+    # via pylint-django
 pytz==2022.1
     # via djangorestframework
 sqlparse==0.4.2
     # via django
+tomli==2.0.1
+    # via pylint
+typing-extensions==4.2.0
+    # via
+    #   astroid
+    #   pylint
+wrapt==1.14.0
+    # via astroid
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
