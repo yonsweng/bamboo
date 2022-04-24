@@ -10,7 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
+import json
+from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
+
+
+def get_secret(secret_file, setting):
+    secret_file = os.path.join(BASE_DIR, secret_file)
+    with open(secret_file) as f:
+        secrets = json.loads(f.read())
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +35,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a!#p^bptt1bv3ci&wrbvw$ruqzv%k!us_n0j!7_6(q(l-2%e=q'
+SECRET_KEY = get_secret('secrets.json', 'SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
